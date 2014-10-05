@@ -250,7 +250,7 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 
 		$code = '
 			<!-- start order and merchant information -->
-			<span id="gts-o-id">' . esc_html( $order_id ) . '</span>
+			<span id="gts-o-id">' . esc_html( $order->get_order_number() ) . '</span>
 			<span id="gts-o-domain">' . str_replace( array( 'http://', 'https://' ), '', home_url() ) . '</span>
 			<span id="gts-o-email">' . esc_html( $order->billing_email ) . '</span>
 			<span id="gts-o-country">' . esc_html( $order->shipping_country ) . '</span>
