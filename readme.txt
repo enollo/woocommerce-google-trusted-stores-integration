@@ -30,7 +30,7 @@ This plugin will add the settings to the Integration tab, to be found in the Woo
 
 == Changelog == 
 
-= 0.1.1 - 10/05/2014
+= 0.1.1 - 10/05/2014 =
  * added translation support
  * added German language
 
