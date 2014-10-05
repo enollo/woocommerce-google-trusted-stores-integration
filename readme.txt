@@ -28,7 +28,16 @@ Or use the automatic installation wizard through your admin panel, just search f
 
 This plugin will add the settings to the Integration tab, to be found in the WooCommerce > Settings menu.
 
-== Changelog ==
+== Changelog == 
+
+= 0.1.1 - 10/05/2014
+ * added translation support
+ * added German language
+
+= 0.1.0 - 10/05/2014 =
+ * general cleanup
+ * use `$order->get_order_number() for `gts-o-id`
+ * localized and added filter on languages
 
 = 0.0.1 - 08/05/2014 =
  * Initial release
