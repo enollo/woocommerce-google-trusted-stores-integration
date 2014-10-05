@@ -5,8 +5,8 @@
  *
  * Allows tracking code to be inserted into store pages.
  *
- * @class 		WC_Google_Trusted_Stores
- * @extends		WC_Integration
+ * @class       WC_Google_Trusted_Stores
+ * @extends     WC_Integration
  */
 class WC_Google_Trusted_Stores extends WC_Integration {
 
@@ -52,11 +52,8 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 
 	/**
 	 * Initialise Settings Form Fields
-	 *
-	 * @access public
-	 * @return void
 	 */
-	function init_form_fields() {
+	public function init_form_fields() {
 
 		$this->form_fields = array(
 
@@ -85,7 +82,7 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 
 			'gts_ship_time' => array(
 				'title'       => __( 'Estimate Ship Time (weekdays)', 'wc_google_trusted_stores' ),
-				'description' => __( 'Set the main language used by your store', 'wc_google_trusted_stores' ),
+				'description' => __( 'Set the estimated shiptime in weekdays', 'wc_google_trusted_stores' ),
 				'type'        => 'text',
 				'default'     => '1'
 			),
@@ -97,37 +94,37 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 			),
 
 			'gts_google_shopping_account_enable' => array(
-				'title'       => __( 'Enable Google Shopping', 'wc_google_trusted_stores' ),
-				'type'        => 'checkbox',
-				'default'     => 'no',
+				'title'           => __( 'Enable Google Shopping', 'wc_google_trusted_stores' ),
+				'type'            => 'checkbox',
+				'default'         => 'no',
 				'show_if_checked' => 'option'
 			),
 
 			'gts_google_shopping_account_id' => array(
-				'title'       => __( 'Google Shopping Account ID', 'wc_google_trusted_stores' ),
-				'description' => __( 'Account ID from Google Shopping. This value should match the account ID you use to submit your product data feed you submit to Google Shopping.<br>Provide this field only if you submit feeds for Google Shopping.', 'wc_google_trusted_stores' ),
-				'type'        => 'text',
-				'default'     => '',
+				'title'           => __( 'Google Shopping Account ID', 'wc_google_trusted_stores' ),
+				'description'     => __( 'Account ID from Google Shopping. This value should match the account ID you use to submit your product data feed you submit to Google Shopping.<br>Provide this field only if you submit feeds for Google Shopping.', 'wc_google_trusted_stores' ),
+				'type'            => 'text',
+				'default'         => '',
 				'show_if_checked' => 'yes'
 			),
 
 			'gts_google_shopping_account_country' => array(
-				'title'       => __( 'Google Shopping Account Country', 'wc_google_trusted_stores' ),
-				'description' => __( 'Account country from Google Shopping. This value should match the account country you use to submit your product data feed to Google Shopping.', 'wc_google_trusted_stores' ),
-				'type'        => 'select',
-				'class'       => 'chosen_select',
-				'default'     => WC()->countries->get_base_country(),
-				'options'     => WC()->countries->countries,
+				'title'           => __( 'Google Shopping Account Country', 'wc_google_trusted_stores' ),
+				'description'     => __( 'Account country from Google Shopping. This value should match the account country you use to submit your product data feed to Google Shopping.', 'wc_google_trusted_stores' ),
+				'type'            => 'select',
+				'class'           => 'chosen_select',
+				'default'         => WC()->countries->get_base_country(),
+				'options'         => WC()->countries->countries,
 				'show_if_checked' => 'yes'
 			),
 
 			'gts_google_shopping_account_language' => array(
-				'title'       => __( 'Language', 'wc_google_trusted_stores' ),
-				'description' => __( 'Account language from Google Shopping. This value should match the account language you use to submit your product data feed to Google Shopping.', 'wc_google_trusted_stores' ),
-				'type'        => 'select',
-				'class'       => 'chosen_select',
-				'default'     => defined( 'WPLANG' ) && WPLANG ? substr(WPLANG, 0, 2) : 'en',
-				'options'     => $this->languages,
+				'title'           => __( 'Language', 'wc_google_trusted_stores' ),
+				'description'     => __( 'Account language from Google Shopping. This value should match the account language you use to submit your product data feed to Google Shopping.', 'wc_google_trusted_stores' ),
+				'type'            => 'select',
+				'class'           => 'chosen_select',
+				'default'         => defined( 'WPLANG' ) && WPLANG ? substr(WPLANG, 0, 2) : 'en',
+				'options'         => $this->languages,
 				'show_if_checked' => 'yes'
 			),
 
@@ -140,7 +137,7 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 	} // End init_form_fields()
 
 
-	function generate_gts_html() {
+	public function generate_gts_html() {
 		ob_start();
 		?>
 		<script type="text/javascript">
@@ -168,11 +165,8 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 
 	/**
 	 * Google Trusted Stores badge code
-	 *
-	 * @access public
-	 * @return void
 	 */
-	function badge_code() {
+	public function badge_code() {
 
 		if ( ! $this->gts_id ) return;
 
@@ -214,11 +208,9 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 	/**
 	 * Google Trusted Stores confirmation code
 	 *
-	 * @access public
 	 * @param mixed $order_id
-	 * @return void
 	 */
-	function confirmation_code( $order_id ) {
+	public function confirmation_code( $order_id ) {
 
 		if ( get_post_meta( $order_id, '_wc_gts_tracked', true ) == 1 ) { //current_user_can('manage_options')
 			return;
@@ -232,7 +224,7 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 		// Get order items
 		$items = $order->get_items();
 
-		$ship_date = date ( 'Y-m-d' , strtotime ( $this->gts_ship_time . ' weekdays', strtotime( $order->order_date ) ) );
+		$ship_date = date ( 'Y-m-d', strtotime ( $this->gts_ship_time . ' weekdays', strtotime( $order->order_date ) ) );
 		$ship_date = apply_filters( 'wc_google_trusted_stores_order_ship_date', $ship_date, $order_id );
 
 		$has_backorder = false;
@@ -250,7 +242,7 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 
 		$code = '
 			<!-- start order and merchant information -->
-			<span id="gts-o-id">' . esc_html( $order_id ) . '</span>
+			<span id="gts-o-id">' . esc_html( $order->get_order_number() ) . '</span>
 			<span id="gts-o-domain">' . str_replace( array( 'http://', 'https://' ), '', home_url() ) . '</span>
 			<span id="gts-o-email">' . esc_html( $order->billing_email ) . '</span>
 			<span id="gts-o-country">' . esc_html( $order->shipping_country ) . '</span>
@@ -290,10 +282,10 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 		}
 
 		echo '<!-- START Google Trusted Stores Order -->
-            <div id="gts-order" style="display:none;" translate="no">';
+			<div id="gts-order" style="display:none;" translate="no">';
 		echo $code;
 		echo '</div>
-            <!-- END Google Trusted Stores Order -->';
+			<!-- END Google Trusted Stores Order -->';
 
 		update_post_meta( $order_id, '_wc_gts_tracked', 1 );
 	}
@@ -302,148 +294,147 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 	/**
 	 * Get languages array
 	 *
-	 * @access public
-	 * @return array
+	 * @return array associative array of languages
 	 */
-	function get_languages() {
+	public function get_languages() {
 
-		return array(
-			'en' => 'English' ,
-			'aa' => 'Afar' ,
-			'ab' => 'Abkhazian' ,
-			'af' => 'Afrikaans' ,
-			'am' => 'Amharic' ,
-			'ar' => 'Arabic' ,
-			'as' => 'Assamese' ,
-			'ay' => 'Aymara' ,
-			'az' => 'Azerbaijani' ,
-			'ba' => 'Bashkir' ,
-			'be' => 'Byelorussian' ,
-			'bg' => 'Bulgarian' ,
-			'bh' => 'Bihari' ,
-			'bi' => 'Bislama' ,
-			'bn' => 'Bengali/Bangla' ,
-			'bo' => 'Tibetan' ,
-			'br' => 'Breton' ,
-			'ca' => 'Catalan' ,
-			'co' => 'Corsican' ,
-			'cs' => 'Czech' ,
-			'cy' => 'Welsh' ,
-			'da' => 'Danish' ,
-			'de' => 'German' ,
-			'dz' => 'Bhutani' ,
-			'el' => 'Greek' ,
-			'eo' => 'Esperanto' ,
-			'es' => 'Spanish' ,
-			'et' => 'Estonian' ,
-			'eu' => 'Basque' ,
-			'fa' => 'Persian' ,
-			'fi' => 'Finnish' ,
-			'fj' => 'Fiji' ,
-			'fo' => 'Faeroese' ,
-			'fr' => 'French' ,
-			'fy' => 'Frisian' ,
-			'ga' => 'Irish' ,
-			'gd' => 'Scots/Gaelic' ,
-			'gl' => 'Galician' ,
-			'gn' => 'Guarani' ,
-			'gu' => 'Gujarati' ,
-			'ha' => 'Hausa' ,
-			'hi' => 'Hindi' ,
-			'hr' => 'Croatian' ,
-			'hu' => 'Hungarian' ,
-			'hy' => 'Armenian' ,
-			'ia' => 'Interlingua' ,
-			'ie' => 'Interlingue' ,
-			'ik' => 'Inupiak' ,
-			'in' => 'Indonesian' ,
-			'is' => 'Icelandic' ,
-			'it' => 'Italian' ,
-			'iw' => 'Hebrew' ,
-			'ja' => 'Japanese' ,
-			'ji' => 'Yiddish' ,
-			'jw' => 'Javanese' ,
-			'ka' => 'Georgian' ,
-			'kk' => 'Kazakh' ,
-			'kl' => 'Greenlandic' ,
-			'km' => 'Cambodian' ,
-			'kn' => 'Kannada' ,
-			'ko' => 'Korean' ,
-			'ks' => 'Kashmiri' ,
-			'ku' => 'Kurdish' ,
-			'ky' => 'Kirghiz' ,
-			'la' => 'Latin' ,
-			'ln' => 'Lingala' ,
-			'lo' => 'Laothian' ,
-			'lt' => 'Lithuanian' ,
-			'lv' => 'Latvian/Lettish' ,
-			'mg' => 'Malagasy' ,
-			'mi' => 'Maori' ,
-			'mk' => 'Macedonian' ,
-			'ml' => 'Malayalam' ,
-			'mn' => 'Mongolian' ,
-			'mo' => 'Moldavian' ,
-			'mr' => 'Marathi' ,
-			'ms' => 'Malay' ,
-			'mt' => 'Maltese' ,
-			'my' => 'Burmese' ,
-			'na' => 'Nauru' ,
-			'ne' => 'Nepali' ,
-			'nl' => 'Dutch' ,
-			'no' => 'Norwegian' ,
-			'oc' => 'Occitan' ,
-			'om' => '(Afan)/Oromoor/Oriya' ,
-			'pa' => 'Punjabi' ,
-			'pl' => 'Polish' ,
-			'ps' => 'Pashto/Pushto' ,
-			'pt' => 'Portuguese' ,
-			'qu' => 'Quechua' ,
-			'rm' => 'Rhaeto-Romance' ,
-			'rn' => 'Kirundi' ,
-			'ro' => 'Romanian' ,
-			'ru' => 'Russian' ,
-			'rw' => 'Kinyarwanda' ,
-			'sa' => 'Sanskrit' ,
-			'sd' => 'Sindhi' ,
-			'sg' => 'Sangro' ,
-			'sh' => 'Serbo-Croatian' ,
-			'si' => 'Singhalese' ,
-			'sk' => 'Slovak' ,
-			'sl' => 'Slovenian' ,
-			'sm' => 'Samoan' ,
-			'sn' => 'Shona' ,
-			'so' => 'Somali' ,
-			'sq' => 'Albanian' ,
-			'sr' => 'Serbian' ,
-			'ss' => 'Siswati' ,
-			'st' => 'Sesotho' ,
-			'su' => 'Sundanese' ,
-			'sv' => 'Swedish' ,
-			'sw' => 'Swahili' ,
-			'ta' => 'Tamil' ,
-			'te' => 'Tegulu' ,
-			'tg' => 'Tajik' ,
-			'th' => 'Thai' ,
-			'ti' => 'Tigrinya' ,
-			'tk' => 'Turkmen' ,
-			'tl' => 'Tagalog' ,
-			'tn' => 'Setswana' ,
-			'to' => 'Tonga' ,
-			'tr' => 'Turkish' ,
-			'ts' => 'Tsonga' ,
-			'tt' => 'Tatar' ,
-			'tw' => 'Twi' ,
-			'uk' => 'Ukrainian' ,
-			'ur' => 'Urdu' ,
-			'uz' => 'Uzbek' ,
-			'vi' => 'Vietnamese' ,
-			'vo' => 'Volapuk' ,
-			'wo' => 'Wolof' ,
-			'xh' => 'Xhosa' ,
-			'yo' => 'Yoruba' ,
-			'zh' => 'Chinese' ,
-			'zu' => 'Zulu' ,
-		);
+		return apply_filters( 'wc_google_trusted_stores_languages', array(
+			'en' => __( 'English', 'wc_google_trusted_stores' ),
+			'aa' => __( 'Afar', 'wc_google_trusted_stores' ),
+			'ab' => __( 'Abkhazian', 'wc_google_trusted_stores' ),
+			'af' => __( 'Afrikaans', 'wc_google_trusted_stores' ),
+			'am' => __( 'Amharic', 'wc_google_trusted_stores' ),
+			'ar' => __( 'Arabic', 'wc_google_trusted_stores' ),
+			'as' => __( 'Assamese', 'wc_google_trusted_stores' ),
+			'ay' => __( 'Aymara', 'wc_google_trusted_stores' ),
+			'az' => __( 'Azerbaijani', 'wc_google_trusted_stores' ),
+			'ba' => __( 'Bashkir', 'wc_google_trusted_stores' ),
+			'be' => __( 'Byelorussian', 'wc_google_trusted_stores' ),
+			'bg' => __( 'Bulgarian', 'wc_google_trusted_stores' ),
+			'bh' => __( 'Bihari', 'wc_google_trusted_stores' ),
+			'bi' => __( 'Bislama', 'wc_google_trusted_stores' ),
+			'bn' => __( 'Bengali/Bangla', 'wc_google_trusted_stores' ),
+			'bo' => __( 'Tibetan', 'wc_google_trusted_stores' ),
+			'br' => __( 'Breton', 'wc_google_trusted_stores' ),
+			'ca' => __( 'Catalan', 'wc_google_trusted_stores' ),
+			'co' => __( 'Corsican', 'wc_google_trusted_stores' ),
+			'cs' => __( 'Czech', 'wc_google_trusted_stores' ),
+			'cy' => __( 'Welsh', 'wc_google_trusted_stores' ),
+			'da' => __( 'Danish', 'wc_google_trusted_stores' ),
+			'de' => __( 'German', 'wc_google_trusted_stores' ),
+			'dz' => __( 'Bhutani', 'wc_google_trusted_stores' ),
+			'el' => __( 'Greek', 'wc_google_trusted_stores' ),
+			'eo' => __( 'Esperanto', 'wc_google_trusted_stores' ),
+			'es' => __( 'Spanish', 'wc_google_trusted_stores' ),
+			'et' => __( 'Estonian', 'wc_google_trusted_stores' ),
+			'eu' => __( 'Basque', 'wc_google_trusted_stores' ),
+			'fa' => __( 'Persian', 'wc_google_trusted_stores' ),
+			'fi' => __( 'Finnish', 'wc_google_trusted_stores' ),
+			'fj' => __( 'Fiji', 'wc_google_trusted_stores' ),
+			'fo' => __( 'Faeroese', 'wc_google_trusted_stores' ),
+			'fr' => __( 'French', 'wc_google_trusted_stores' ),
+			'fy' => __( 'Frisian', 'wc_google_trusted_stores' ),
+			'ga' => __( 'Irish', 'wc_google_trusted_stores' ),
+			'gd' => __( 'Scots/Gaelic', 'wc_google_trusted_stores' ),
+			'gl' => __( 'Galician', 'wc_google_trusted_stores' ),
+			'gn' => __( 'Guarani', 'wc_google_trusted_stores' ),
+			'gu' => __( 'Gujarati', 'wc_google_trusted_stores' ),
+			'ha' => __( 'Hausa', 'wc_google_trusted_stores' ),
+			'hi' => __( 'Hindi', 'wc_google_trusted_stores' ),
+			'hr' => __( 'Croatian', 'wc_google_trusted_stores' ),
+			'hu' => __( 'Hungarian', 'wc_google_trusted_stores' ),
+			'hy' => __( 'Armenian', 'wc_google_trusted_stores' ),
+			'ia' => __( 'Interlingua', 'wc_google_trusted_stores' ),
+			'ie' => __( 'Interlingue', 'wc_google_trusted_stores' ),
+			'ik' => __( 'Inupiak', 'wc_google_trusted_stores' ),
+			'in' => __( 'Indonesian', 'wc_google_trusted_stores' ),
+			'is' => __( 'Icelandic', 'wc_google_trusted_stores' ),
+			'it' => __( 'Italian', 'wc_google_trusted_stores' ),
+			'iw' => __( 'Hebrew', 'wc_google_trusted_stores' ),
+			'ja' => __( 'Japanese', 'wc_google_trusted_stores' ),
+			'ji' => __( 'Yiddish', 'wc_google_trusted_stores' ),
+			'jw' => __( 'Javanese', 'wc_google_trusted_stores' ),
+			'ka' => __( 'Georgian', 'wc_google_trusted_stores' ),
+			'kk' => __( 'Kazakh', 'wc_google_trusted_stores' ),
+			'kl' => __( 'Greenlandic', 'wc_google_trusted_stores' ),
+			'km' => __( 'Cambodian', 'wc_google_trusted_stores' ),
+			'kn' => __( 'Kannada', 'wc_google_trusted_stores' ),
+			'ko' => __( 'Korean', 'wc_google_trusted_stores' ),
+			'ks' => __( 'Kashmiri', 'wc_google_trusted_stores' ),
+			'ku' => __( 'Kurdish', 'wc_google_trusted_stores' ),
+			'ky' => __( 'Kirghiz', 'wc_google_trusted_stores' ),
+			'la' => __( 'Latin', 'wc_google_trusted_stores' ),
+			'ln' => __( 'Lingala', 'wc_google_trusted_stores' ),
+			'lo' => __( 'Laothian', 'wc_google_trusted_stores' ),
+			'lt' => __( 'Lithuanian', 'wc_google_trusted_stores' ),
+			'lv' => __( 'Latvian/Lettish', 'wc_google_trusted_stores' ),
+			'mg' => __( 'Malagasy', 'wc_google_trusted_stores' ),
+			'mi' => __( 'Maori', 'wc_google_trusted_stores' ),
+			'mk' => __( 'Macedonian', 'wc_google_trusted_stores' ),
+			'ml' => __( 'Malayalam', 'wc_google_trusted_stores' ),
+			'mn' => __( 'Mongolian', 'wc_google_trusted_stores' ),
+			'mo' => __( 'Moldavian', 'wc_google_trusted_stores' ),
+			'mr' => __( 'Marathi', 'wc_google_trusted_stores' ),
+			'ms' => __( 'Malay', 'wc_google_trusted_stores' ),
+			'mt' => __( 'Maltese', 'wc_google_trusted_stores' ),
+			'my' => __( 'Burmese', 'wc_google_trusted_stores' ),
+			'na' => __( 'Nauru', 'wc_google_trusted_stores' ),
+			'ne' => __( 'Nepali', 'wc_google_trusted_stores' ),
+			'nl' => __( 'Dutch', 'wc_google_trusted_stores' ),
+			'no' => __( 'Norwegian', 'wc_google_trusted_stores' ),
+			'oc' => __( 'Occitan', 'wc_google_trusted_stores' ),
+			'om' => __( '(Afan)/Oromoor/Oriya', 'wc_google_trusted_stores' ),
+			'pa' => __( 'Punjabi', 'wc_google_trusted_stores' ),
+			'pl' => __( 'Polish', 'wc_google_trusted_stores' ),
+			'ps' => __( 'Pashto/Pushto', 'wc_google_trusted_stores' ),
+			'pt' => __( 'Portuguese', 'wc_google_trusted_stores' ),
+			'qu' => __( 'Quechua', 'wc_google_trusted_stores' ),
+			'rm' => __( 'Rhaeto-Romance', 'wc_google_trusted_stores' ),
+			'rn' => __( 'Kirundi', 'wc_google_trusted_stores' ),
+			'ro' => __( 'Romanian', 'wc_google_trusted_stores' ),
+			'ru' => __( 'Russian', 'wc_google_trusted_stores' ),
+			'rw' => __( 'Kinyarwanda', 'wc_google_trusted_stores' ),
+			'sa' => __( 'Sanskrit', 'wc_google_trusted_stores' ),
+			'sd' => __( 'Sindhi', 'wc_google_trusted_stores' ),
+			'sg' => __( 'Sangro', 'wc_google_trusted_stores' ),
+			'sh' => __( 'Serbo-Croatian', 'wc_google_trusted_stores' ),
+			'si' => __( 'Singhalese', 'wc_google_trusted_stores' ),
+			'sk' => __( 'Slovak', 'wc_google_trusted_stores' ),
+			'sl' => __( 'Slovenian', 'wc_google_trusted_stores' ),
+			'sm' => __( 'Samoan', 'wc_google_trusted_stores' ),
+			'sn' => __( 'Shona', 'wc_google_trusted_stores' ),
+			'so' => __( 'Somali', 'wc_google_trusted_stores' ),
+			'sq' => __( 'Albanian', 'wc_google_trusted_stores' ),
+			'sr' => __( 'Serbian', 'wc_google_trusted_stores' ),
+			'ss' => __( 'Siswati', 'wc_google_trusted_stores' ),
+			'st' => __( 'Sesotho', 'wc_google_trusted_stores' ),
+			'su' => __( 'Sundanese', 'wc_google_trusted_stores' ),
+			'sv' => __( 'Swedish', 'wc_google_trusted_stores' ),
+			'sw' => __( 'Swahili', 'wc_google_trusted_stores' ),
+			'ta' => __( 'Tamil', 'wc_google_trusted_stores' ),
+			'te' => __( 'Tegulu', 'wc_google_trusted_stores' ),
+			'tg' => __( 'Tajik', 'wc_google_trusted_stores' ),
+			'th' => __( 'Thai', 'wc_google_trusted_stores' ),
+			'ti' => __( 'Tigrinya', 'wc_google_trusted_stores' ),
+			'tk' => __( 'Turkmen', 'wc_google_trusted_stores' ),
+			'tl' => __( 'Tagalog', 'wc_google_trusted_stores' ),
+			'tn' => __( 'Setswana', 'wc_google_trusted_stores' ),
+			'to' => __( 'Tonga', 'wc_google_trusted_stores' ),
+			'tr' => __( 'Turkish', 'wc_google_trusted_stores' ),
+			'ts' => __( 'Tsonga', 'wc_google_trusted_stores' ),
+			'tt' => __( 'Tatar', 'wc_google_trusted_stores' ),
+			'tw' => __( 'Twi', 'wc_google_trusted_stores' ),
+			'uk' => __( 'Ukrainian', 'wc_google_trusted_stores' ),
+			'ur' => __( 'Urdu', 'wc_google_trusted_stores' ),
+			'uz' => __( 'Uzbek', 'wc_google_trusted_stores' ),
+			'vi' => __( 'Vietnamese', 'wc_google_trusted_stores' ),
+			'vo' => __( 'Volapuk', 'wc_google_trusted_stores' ),
+			'wo' => __( 'Wolof', 'wc_google_trusted_stores' ),
+			'xh' => __( 'Xhosa', 'wc_google_trusted_stores' ),
+			'yo' => __( 'Yoruba', 'wc_google_trusted_stores' ),
+			'zh' => __( 'Chinese', 'wc_google_trusted_stores' ),
+			'zu' => __( 'Zulu', 'wc_google_trusted_stores' ),
+		) );
 	}
 
 }
