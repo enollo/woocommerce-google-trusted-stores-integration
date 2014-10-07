@@ -1,5 +1,5 @@
 === WooCommerce Google Trusted Stores Integration ===
-Contributors: tamarazuk, enollo
+Contributors: tamarazuk, enollo, s-a-s-k-i-a
 Tags: woocommerce, google trusted stores
 Requires at least: 3.8
 Tested up to: 3.9
