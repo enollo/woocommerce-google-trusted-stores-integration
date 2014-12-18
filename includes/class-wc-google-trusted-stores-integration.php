@@ -191,11 +191,10 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 
 		$code .= '
 				(function() {
-					var scheme = (("https:" == document.location.protocol) ? "https://" : "http://");
 					var gts = document.createElement("script");
 					gts.type = "text/javascript";
 					gts.async = true;
-					gts.src = scheme + "www.googlecommerce.com/trustedstores/gtmp_compiled.js";
+					gts.src = "https://www.googlecommerce.com/trustedstores/api/js";
 					var s = document.getElementsByTagName("script")[0];
 					s.parentNode.insertBefore(gts, s);
 				})();
