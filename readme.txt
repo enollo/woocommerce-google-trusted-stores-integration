@@ -3,7 +3,7 @@ Contributors: tamarazuk, enollo, s-a-s-k-i-a
 Tags: woocommerce, google trusted stores
 Requires at least: 3.8
 Tested up to: 3.9
-Stable tag: 1.0
+Stable tag: 0.1.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -28,16 +28,19 @@ Or use the automatic installation wizard through your admin panel, just search f
 
 This plugin will add the settings to the Integration tab, to be found in the WooCommerce > Settings menu.
 
-== Changelog == 
+== Changelog ==
 
-= 0.1.1 - 10/05/2014 =
- * added translation support
- * added German language
+= 0.1.1 - 2014.12.01 =
+ * Add - german .po and .mo files
 
-= 0.1.0 - 10/05/2014 =
- * general cleanup
- * use `$order->get_order_number() for `gts-o-id`
- * localized and added filter on languages
+= 0.1.0-2 - 2014.nn.nn =
+ * Fix - Add the estimated delivery date
+ * Tweak - Allow use of non-US Google Trusted Stores JavaScript
 
-= 0.0.1 - 08/05/2014 =
+= 0.1.0 - 2014.10.05 =
+ * Tweak - general cleanup
+ * Fix - Use `$order->get_order_number() for `gts-o-id` - props to @WOWstyleshop
+ * Localization - localized and added filter on languages
+
+= 0.0.1 - 2014.05.08 =
  * Initial release

@@ -10,11 +10,9 @@
  */
 class WC_Google_Trusted_Stores extends WC_Integration {
 
+
 	/**
 	 * Init and hook in the integration.
-	 *
-	 * @access public
-	 * @return void
 	 */
 	public function __construct() {
 		$this->id                 = 'google_trusted_stores';
@@ -29,8 +27,10 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 
 		// Define user set variables
 		$this->gts_id                               = $this->get_option( 'gts_id' );
-		$this->gts_language                         = $this->get_option( 'gts_language' );
+		$this->gts_locale                           = $this->get_option( 'gts_locale' );
 		$this->gts_ship_time                        = $this->get_option( 'gts_ship_time' );
+		$this->gts_delivery_time                    = $this->get_option( 'gts_delivery_time' );
+		$this->gts_non_us                           = $this->get_option( 'gts_non_us' );
 		$this->gts_google_shopping_account_enable   = $this->get_option( 'gts_google_shopping_account_enable' );
 		$this->gts_google_shopping_account_id       = $this->get_option( 'gts_google_shopping_account_id' );
 		$this->gts_google_shopping_account_country  = $this->get_option( 'gts_google_shopping_account_country' );
@@ -38,15 +38,13 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 
 
 		// Actions
-		add_action( 'woocommerce_update_options_integration_google_trusted_stores', array( $this, 'process_admin_options') );
+		add_action( 'woocommerce_update_options_integration_google_trusted_stores', array( $this, 'process_admin_options' ) );
 
 		// Google Trusted Stores Badge Code
 		add_action( 'wp_footer', array( $this, 'badge_code' ) );
 
 		// Order Confirmation Module Code
 		add_action( 'woocommerce_thankyou', array( $this, 'confirmation_code' ) );
-
-		//
 	}
 
 
@@ -61,43 +59,56 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 				'title'       => __( 'General Options', 'wc_google_trusted_stores' ),
 				'type'        => 'title',
 				'description' => __( 'The following options are required to show the Google Trusted Stores Badge', 'wc_google_trusted_stores' ),
-				'id'          => 'wc_gts_general_options'
+				'id'          => 'wc_gts_general_options',
 			),
 
 			'gts_id' => array(
 				'title'       => __( 'Google Trusted Stores ID', 'wc_google_trusted_stores' ),
 				'description' => __( 'Log into your Google Trusted Stores account to find your ID. e.g. <code>000000</code>', 'wc_google_trusted_stores' ),
 				'type'        => 'text',
-				'default'     => ''
+				'default'     => '',
 			),
 
-			'gts_language' => array(
-				'title'       => __( 'Language', 'wc_google_trusted_stores' ),
-				'description' => __( 'Set the main language used by your store', 'wc_google_trusted_stores' ),
-				'type'        => 'select',
-				'class'       => 'chosen_select',
-				'default'     => defined( 'WPLANG' ) && WPLANG ? substr(WPLANG, 0, 2) : 'en',
-				'options'     => $this->languages
+			'gts_locale' => array(
+				'title'       => __( 'Locale', 'wc_google_trusted_stores' ),
+				'description' => sprintf( __( 'Set the main locale of your site. The locale should be in the format of <code>%s</code>', 'wc_google_trusted_stores' ), esc_html( '<language>_<country>' ) ),
+				'type'        => 'text',
+				'default'     => defined( 'WPLANG' ) && WPLANG ? WPLANG : 'en_US',
 			),
 
 			'gts_ship_time' => array(
 				'title'       => __( 'Estimate Ship Time (weekdays)', 'wc_google_trusted_stores' ),
-				'description' => __( 'Set the estimated shiptime in weekdays', 'wc_google_trusted_stores' ),
+				'description' => __( 'Set the estimated ship time in weekdays', 'wc_google_trusted_stores' ),
 				'type'        => 'text',
-				'default'     => '1'
+				'default'     => '1',
+			),
+
+			'gts_delivery_time' => array(
+				'title'       => __( 'Estimate Delivery Time (weekdays)', 'wc_google_trusted_stores' ),
+				'description' => __( 'Set the estimated delivery time in weekdays from the ship date', 'wc_google_trusted_stores' ),
+				'type'        => 'text',
+				'default'     => '7',
+			),
+
+			'gts_non_us' => array(
+				'title'   => __( 'Non-US', 'wc_google_trusted_stores' ),
+				'label'   => __( 'Use the non-US Google Trusted Stores JavaScript', 'wc_google_trusted_stores' ),
+				'type'    => 'checkbox',
+				'default' => 'yes',
 			),
 
 			'title_google_shopping' => array (
 				'title'       => __( 'Google Shopping Options', 'wc_google_trusted_stores' ),
 				'type'        => 'title',
-				'description' => __( 'The following options are recommended if you submit product feeds for Google Shopping.<br>Provide these fields only if you submit feeds for Google Shopping.', 'wc_google_trusted_stores' )
+				'description' => __( 'The following options are recommended if you submit product feeds for Google Shopping.<br>Provide these fields only if you submit feeds for Google Shopping.', 'wc_google_trusted_stores' ),
 			),
 
 			'gts_google_shopping_account_enable' => array(
-				'title'           => __( 'Enable Google Shopping', 'wc_google_trusted_stores' ),
+				'title'           => __( 'Google Shopping', 'wc_google_trusted_stores' ),
+				'label'           => __( 'Enable Google Shopping', 'wc_google_trusted_stores' ),
 				'type'            => 'checkbox',
 				'default'         => 'no',
-				'show_if_checked' => 'option'
+				'show_if_checked' => 'option',
 			),
 
 			'gts_google_shopping_account_id' => array(
@@ -105,7 +116,7 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 				'description'     => __( 'Account ID from Google Shopping. This value should match the account ID you use to submit your product data feed you submit to Google Shopping.<br>Provide this field only if you submit feeds for Google Shopping.', 'wc_google_trusted_stores' ),
 				'type'            => 'text',
 				'default'         => '',
-				'show_if_checked' => 'yes'
+				'show_if_checked' => 'yes',
 			),
 
 			'gts_google_shopping_account_country' => array(
@@ -115,7 +126,7 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 				'class'           => 'chosen_select',
 				'default'         => WC()->countries->get_base_country(),
 				'options'         => WC()->countries->countries,
-				'show_if_checked' => 'yes'
+				'show_if_checked' => 'yes',
 			),
 
 			'gts_google_shopping_account_language' => array(
@@ -123,13 +134,13 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 				'description'     => __( 'Account language from Google Shopping. This value should match the account language you use to submit your product data feed to Google Shopping.', 'wc_google_trusted_stores' ),
 				'type'            => 'select',
 				'class'           => 'chosen_select',
-				'default'         => defined( 'WPLANG' ) && WPLANG ? substr(WPLANG, 0, 2) : 'en',
+				'default'         => defined( 'WPLANG' ) && WPLANG ? substr( WPLANG, 0, 2 ) : 'en',
 				'options'         => $this->languages,
-				'show_if_checked' => 'yes'
+				'show_if_checked' => 'yes',
 			),
 
 			'gts_html' => array(
-				'type' => 'gts'
+				'type' => 'gts',
 			)
 
 		);
@@ -141,22 +152,19 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 		ob_start();
 		?>
 		<script type="text/javascript">
-
-			jQuery(window).load(function(){
-
-				jQuery('#woocommerce_google_trusted_stores_gts_google_shopping_account_enable').change(function(){
-					if ( jQuery(this).is(':checked') ) {
-						jQuery('#woocommerce_google_trusted_stores_gts_google_shopping_account_id').closest('tr').show();
-						jQuery('#woocommerce_google_trusted_stores_gts_google_shopping_account_country').closest('tr').show();
-						jQuery('#woocommerce_google_trusted_stores_gts_google_shopping_account_language').closest('tr').show();
+			jQuery( window ).load( function() {
+				jQuery( '#woocommerce_google_trusted_stores_gts_google_shopping_account_enable' ).change( function(){
+					if ( jQuery( this ).is( ':checked' ) ) {
+						jQuery( '#woocommerce_google_trusted_stores_gts_google_shopping_account_id' ).closest( 'tr' ).show();
+						jQuery( '#woocommerce_google_trusted_stores_gts_google_shopping_account_country' ).closest( 'tr' ).show();
+						jQuery( '#woocommerce_google_trusted_stores_gts_google_shopping_account_language' ).closest( 'tr' ).show();
 					} else {
-						jQuery('#woocommerce_google_trusted_stores_gts_google_shopping_account_id').closest('tr').hide();
-						jQuery('#woocommerce_google_trusted_stores_gts_google_shopping_account_country').closest('tr').hide();
-						jQuery('#woocommerce_google_trusted_stores_gts_google_shopping_account_language').closest('tr').hide();
+						jQuery( '#woocommerce_google_trusted_stores_gts_google_shopping_account_id' ).closest( 'tr' ).hide();
+						jQuery( '#woocommerce_google_trusted_stores_gts_google_shopping_account_country' ).closest( 'tr' ).hide();
+						jQuery( '#woocommerce_google_trusted_stores_gts_google_shopping_account_language' ).closest( 'tr' ).hide();
 					}
 				}).change();
 			});
-
 		</script>
 		<?php
 		return ob_get_clean();
@@ -168,20 +176,22 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 	 */
 	public function badge_code() {
 
-		if ( ! $this->gts_id ) return;
+		if ( ! $this->gts_id ) {
+			return;
+		}
 
 		$code = 'var gts = gts || [];
 					gts.push(["id", "' . esc_js( $this->gts_id ) . '"]);
-					gts.push(["locale", "' . esc_js( $this->gts_language ) . '"]);';
+					gts.push(["locale", "' . esc_js( $this->gts_locale ) . '"]);';
 
 		if ( is_product() ) {
 
 			global $product;
 			$code .= 'gts.push(["google_base_offer_id", "' . esc_js( $product->id ) . '"]);';
-
 		}
 
 		if ( $this->gts_google_shopping_account_enable === 'yes' && $this->gts_google_shopping_account_id !== '' ) {
+
 			$code .= '
 				gts.push(["google_base_subaccount_id", "' . esc_js( $this->gts_google_shopping_account_id ) . '"]);
 				gts.push(["google_base_country", "' . esc_js( $this->gts_google_shopping_account_country ) . '"]);
@@ -189,13 +199,15 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 			';
 		}
 
+		$src = 'yes' === $this->gts_non_us ? 'www.googlecommerce.com/trustedstores/api/js' : 'www.googlecommerce.com/trustedstores/gtmp_compiled.js';
+
 		$code .= '
 				(function() {
 					var scheme = (("https:" == document.location.protocol) ? "https://" : "http://");
 					var gts = document.createElement("script");
 					gts.type = "text/javascript";
 					gts.async = true;
-					gts.src = scheme + "www.googlecommerce.com/trustedstores/gtmp_compiled.js";
+					gts.src = scheme + "' . $src . '";
 					var s = document.getElementsByTagName("script")[0];
 					s.parentNode.insertBefore(gts, s);
 				})();
@@ -212,30 +224,35 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 	 */
 	public function confirmation_code( $order_id ) {
 
-		if ( get_post_meta( $order_id, '_wc_gts_tracked', true ) == 1 ) { //current_user_can('manage_options')
+		if ( 1 === get_post_meta( $order_id, '_wc_gts_tracked', true ) ) {
 			return;
 		}
 
-		if ( ! $this->gts_id  ) return;
+		if ( ! $this->gts_id  ) {
+			return;
+		}
 
 		// Get the order
-		$order = new WC_Order( $order_id );
+		$order = wc_get_order( $order_id );
 
 		// Get order items
 		$items = $order->get_items();
 
-		$ship_date = date ( 'Y-m-d', strtotime ( $this->gts_ship_time . ' weekdays', strtotime( $order->order_date ) ) );
+		$ship_date = date( 'Y-m-d', strtotime( $this->gts_ship_time . ' weekdays', strtotime( $order->order_date ) ) );
 		$ship_date = apply_filters( 'wc_google_trusted_stores_order_ship_date', $ship_date, $order_id );
+
+		$delivery_date = date( 'Y-m-d', strtotime( $this->gts_delivery_time . ' weekdays', strtotime( $ship_date ) ) );
+		$delivery_date = apply_filters( 'wc_google_trusted_stores_order_delivery_date', $delivery_date, $order_id );
 
 		$has_backorder = false;
 
 		foreach ( $items as $item ) {
 
 			$product = $order->get_product_from_item( $item );
+
 			if ( $product && $product->exists() && $product->is_on_backorder() ) {
 				$has_backorder = true;
 			}
-
 		}
 
 		$has_backorder = apply_filters( 'wc_google_trusted_stores_order_has_backorder', $has_backorder, $order_id );
@@ -252,10 +269,11 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 			<span id="gts-o-shipping-total">' . esc_html( $order->get_total_shipping() ) . '</span>
 			<span id="gts-o-tax-total">' . esc_html( $order->get_total_tax() ) . '</span>
 			<span id="gts-o-est-ship-date">' . esc_html( $ship_date ) . '</span>
+			<span id="gts-o-est-delivery-date">' . esc_html( $delivery_date ) . '</span>
 			<span id="gts-o-has-preorder">' . ( $has_backorder ? 'Y' : 'N' ) . '</span>
 			<span id="gts-o-has-digital">' . ( $order->has_downloadable_item() ? 'Y' : 'N' ) . '</span>
 			<!-- end order and merchant information -->
-		'; //<span id="gts-o-est-delivery-date">' . esc_html( $order->?? ) . '</span>
+		';
 
 		$google_shopping_acct_code = '';
 
@@ -278,7 +296,6 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 					$google_shopping_acct_code .
 				'</span>
 			';
-
 		}
 
 		echo '<!-- START Google Trusted Stores Order -->
@@ -436,5 +453,6 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 			'zu' => __( 'Zulu', 'wc_google_trusted_stores' ),
 		) );
 	}
+
 
 }
