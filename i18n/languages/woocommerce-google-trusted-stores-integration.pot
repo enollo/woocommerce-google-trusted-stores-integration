@@ -1,8 +1,8 @@
-# Copyright (C) 2014 Enollo
+# Copyright (C) 2015 enollo
 # This file is distributed under the same license as the WooCommerce Google Trusted Stores Integration package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Google Trusted Stores Integration 0.1.0-2\n"
+"Project-Id-Version: WooCommerce Google Trusted Stores Integration 1.0.0\n"
 "Report-Msgid-Bugs-To: "
 "https://github.com/skyverge/woocommerce-google-trusted-stores-integration/"
 "issues\n"
@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
@@ -82,44 +82,34 @@ msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:94
 #: includes/class-wc-google-trusted-stores-integration.php:94
-msgid "Non-US"
-msgstr ""
-
-#: build/includes/class-wc-google-trusted-stores-integration.php:95
-#: includes/class-wc-google-trusted-stores-integration.php:95
-msgid "Use the non-US Google Trusted Stores JavaScript"
-msgstr ""
-
-#: build/includes/class-wc-google-trusted-stores-integration.php:101
-#: includes/class-wc-google-trusted-stores-integration.php:101
 msgid "Google Shopping Options"
 msgstr ""
 
-#: build/includes/class-wc-google-trusted-stores-integration.php:103
-#: includes/class-wc-google-trusted-stores-integration.php:103
+#: build/includes/class-wc-google-trusted-stores-integration.php:96
+#: includes/class-wc-google-trusted-stores-integration.php:96
 msgid ""
 "The following options are recommended if you submit product feeds for "
 "Google Shopping.<br>Provide these fields only if you submit feeds for "
 "Google Shopping."
 msgstr ""
 
-#: build/includes/class-wc-google-trusted-stores-integration.php:107
-#: includes/class-wc-google-trusted-stores-integration.php:107
+#: build/includes/class-wc-google-trusted-stores-integration.php:100
+#: includes/class-wc-google-trusted-stores-integration.php:100
 msgid "Google Shopping"
+msgstr ""
+
+#: build/includes/class-wc-google-trusted-stores-integration.php:101
+#: includes/class-wc-google-trusted-stores-integration.php:101
+msgid "Enable Google Shopping"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:108
 #: includes/class-wc-google-trusted-stores-integration.php:108
-msgid "Enable Google Shopping"
-msgstr ""
-
-#: build/includes/class-wc-google-trusted-stores-integration.php:115
-#: includes/class-wc-google-trusted-stores-integration.php:115
 msgid "Google Shopping Account ID"
 msgstr ""
 
-#: build/includes/class-wc-google-trusted-stores-integration.php:116
-#: includes/class-wc-google-trusted-stores-integration.php:116
+#: build/includes/class-wc-google-trusted-stores-integration.php:109
+#: includes/class-wc-google-trusted-stores-integration.php:109
 msgid ""
 "Account ID from Google Shopping. This value should match the account ID you "
 "use to submit your product data feed you submit to Google "
@@ -127,702 +117,725 @@ msgid ""
 "Shopping."
 msgstr ""
 
-#: build/includes/class-wc-google-trusted-stores-integration.php:123
-#: includes/class-wc-google-trusted-stores-integration.php:123
+#: build/includes/class-wc-google-trusted-stores-integration.php:116
+#: includes/class-wc-google-trusted-stores-integration.php:116
 msgid "Google Shopping Account Country"
 msgstr ""
 
-#: build/includes/class-wc-google-trusted-stores-integration.php:124
-#: includes/class-wc-google-trusted-stores-integration.php:124
+#: build/includes/class-wc-google-trusted-stores-integration.php:117
+#: includes/class-wc-google-trusted-stores-integration.php:117
 msgid ""
 "Account country from Google Shopping. This value should match the account "
 "country you use to submit your product data feed to Google Shopping."
 msgstr ""
 
-#: build/includes/class-wc-google-trusted-stores-integration.php:133
-#: includes/class-wc-google-trusted-stores-integration.php:133
+#: build/includes/class-wc-google-trusted-stores-integration.php:126
+#: includes/class-wc-google-trusted-stores-integration.php:126
 msgid "Language"
 msgstr ""
 
-#: build/includes/class-wc-google-trusted-stores-integration.php:134
-#: includes/class-wc-google-trusted-stores-integration.php:134
+#: build/includes/class-wc-google-trusted-stores-integration.php:127
+#: includes/class-wc-google-trusted-stores-integration.php:127
 msgid ""
 "Account language from Google Shopping. This value should match the account "
 "language you use to submit your product data feed to Google Shopping."
 msgstr ""
 
+#: build/includes/class-wc-google-trusted-stores-integration.php:136
+#: includes/class-wc-google-trusted-stores-integration.php:136
+msgid "Advanced Options"
+msgstr ""
+
+#: build/includes/class-wc-google-trusted-stores-integration.php:138
+#: includes/class-wc-google-trusted-stores-integration.php:138
+msgid "Use the following settings only if you having issues with validation."
+msgstr ""
+
+#: build/includes/class-wc-google-trusted-stores-integration.php:143
+#: includes/class-wc-google-trusted-stores-integration.php:143
+msgid "Older JS source"
+msgstr ""
+
+#: build/includes/class-wc-google-trusted-stores-integration.php:144
+#: includes/class-wc-google-trusted-stores-integration.php:144
+msgid ""
+"Use the older Google Trusted Stores JavaScript. If you're unable to pass "
+"Google Trusted Stores validation, try enabling this setting as your account "
+"may still be using the older source code."
+msgstr ""
+
+#: build/includes/class-wc-google-trusted-stores-integration.php:313
+#: includes/class-wc-google-trusted-stores-integration.php:313
+msgid "English"
+msgstr ""
+
+#: build/includes/class-wc-google-trusted-stores-integration.php:314
+#: includes/class-wc-google-trusted-stores-integration.php:314
+msgid "Afar"
+msgstr ""
+
+#: build/includes/class-wc-google-trusted-stores-integration.php:315
+#: includes/class-wc-google-trusted-stores-integration.php:315
+msgid "Abkhazian"
+msgstr ""
+
+#: build/includes/class-wc-google-trusted-stores-integration.php:316
+#: includes/class-wc-google-trusted-stores-integration.php:316
+msgid "Afrikaans"
+msgstr ""
+
+#: build/includes/class-wc-google-trusted-stores-integration.php:317
+#: includes/class-wc-google-trusted-stores-integration.php:317
+msgid "Amharic"
+msgstr ""
+
+#: build/includes/class-wc-google-trusted-stores-integration.php:318
+#: includes/class-wc-google-trusted-stores-integration.php:318
+msgid "Arabic"
+msgstr ""
+
 #: build/includes/class-wc-google-trusted-stores-integration.php:319
 #: includes/class-wc-google-trusted-stores-integration.php:319
-msgid "English"
+msgid "Assamese"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:320
 #: includes/class-wc-google-trusted-stores-integration.php:320
-msgid "Afar"
+msgid "Aymara"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:321
 #: includes/class-wc-google-trusted-stores-integration.php:321
-msgid "Abkhazian"
+msgid "Azerbaijani"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:322
 #: includes/class-wc-google-trusted-stores-integration.php:322
-msgid "Afrikaans"
+msgid "Bashkir"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:323
 #: includes/class-wc-google-trusted-stores-integration.php:323
-msgid "Amharic"
+msgid "Byelorussian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:324
 #: includes/class-wc-google-trusted-stores-integration.php:324
-msgid "Arabic"
+msgid "Bulgarian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:325
 #: includes/class-wc-google-trusted-stores-integration.php:325
-msgid "Assamese"
+msgid "Bihari"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:326
 #: includes/class-wc-google-trusted-stores-integration.php:326
-msgid "Aymara"
+msgid "Bislama"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:327
 #: includes/class-wc-google-trusted-stores-integration.php:327
-msgid "Azerbaijani"
+msgid "Bengali/Bangla"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:328
 #: includes/class-wc-google-trusted-stores-integration.php:328
-msgid "Bashkir"
+msgid "Tibetan"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:329
 #: includes/class-wc-google-trusted-stores-integration.php:329
-msgid "Byelorussian"
+msgid "Breton"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:330
 #: includes/class-wc-google-trusted-stores-integration.php:330
-msgid "Bulgarian"
+msgid "Catalan"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:331
 #: includes/class-wc-google-trusted-stores-integration.php:331
-msgid "Bihari"
+msgid "Corsican"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:332
 #: includes/class-wc-google-trusted-stores-integration.php:332
-msgid "Bislama"
+msgid "Czech"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:333
 #: includes/class-wc-google-trusted-stores-integration.php:333
-msgid "Bengali/Bangla"
+msgid "Welsh"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:334
 #: includes/class-wc-google-trusted-stores-integration.php:334
-msgid "Tibetan"
+msgid "Danish"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:335
 #: includes/class-wc-google-trusted-stores-integration.php:335
-msgid "Breton"
+msgid "German"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:336
 #: includes/class-wc-google-trusted-stores-integration.php:336
-msgid "Catalan"
+msgid "Bhutani"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:337
 #: includes/class-wc-google-trusted-stores-integration.php:337
-msgid "Corsican"
+msgid "Greek"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:338
 #: includes/class-wc-google-trusted-stores-integration.php:338
-msgid "Czech"
+msgid "Esperanto"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:339
 #: includes/class-wc-google-trusted-stores-integration.php:339
-msgid "Welsh"
+msgid "Spanish"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:340
 #: includes/class-wc-google-trusted-stores-integration.php:340
-msgid "Danish"
+msgid "Estonian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:341
 #: includes/class-wc-google-trusted-stores-integration.php:341
-msgid "German"
+msgid "Basque"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:342
 #: includes/class-wc-google-trusted-stores-integration.php:342
-msgid "Bhutani"
+msgid "Persian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:343
 #: includes/class-wc-google-trusted-stores-integration.php:343
-msgid "Greek"
+msgid "Finnish"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:344
 #: includes/class-wc-google-trusted-stores-integration.php:344
-msgid "Esperanto"
+msgid "Fiji"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:345
 #: includes/class-wc-google-trusted-stores-integration.php:345
-msgid "Spanish"
+msgid "Faeroese"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:346
 #: includes/class-wc-google-trusted-stores-integration.php:346
-msgid "Estonian"
+msgid "French"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:347
 #: includes/class-wc-google-trusted-stores-integration.php:347
-msgid "Basque"
+msgid "Frisian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:348
 #: includes/class-wc-google-trusted-stores-integration.php:348
-msgid "Persian"
+msgid "Irish"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:349
 #: includes/class-wc-google-trusted-stores-integration.php:349
-msgid "Finnish"
+msgid "Scots/Gaelic"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:350
 #: includes/class-wc-google-trusted-stores-integration.php:350
-msgid "Fiji"
+msgid "Galician"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:351
 #: includes/class-wc-google-trusted-stores-integration.php:351
-msgid "Faeroese"
+msgid "Guarani"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:352
 #: includes/class-wc-google-trusted-stores-integration.php:352
-msgid "French"
+msgid "Gujarati"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:353
 #: includes/class-wc-google-trusted-stores-integration.php:353
-msgid "Frisian"
+msgid "Hausa"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:354
 #: includes/class-wc-google-trusted-stores-integration.php:354
-msgid "Irish"
+msgid "Hindi"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:355
 #: includes/class-wc-google-trusted-stores-integration.php:355
-msgid "Scots/Gaelic"
+msgid "Croatian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:356
 #: includes/class-wc-google-trusted-stores-integration.php:356
-msgid "Galician"
+msgid "Hungarian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:357
 #: includes/class-wc-google-trusted-stores-integration.php:357
-msgid "Guarani"
+msgid "Armenian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:358
 #: includes/class-wc-google-trusted-stores-integration.php:358
-msgid "Gujarati"
+msgid "Interlingua"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:359
 #: includes/class-wc-google-trusted-stores-integration.php:359
-msgid "Hausa"
+msgid "Interlingue"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:360
 #: includes/class-wc-google-trusted-stores-integration.php:360
-msgid "Hindi"
+msgid "Inupiak"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:361
 #: includes/class-wc-google-trusted-stores-integration.php:361
-msgid "Croatian"
+msgid "Indonesian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:362
 #: includes/class-wc-google-trusted-stores-integration.php:362
-msgid "Hungarian"
+msgid "Icelandic"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:363
 #: includes/class-wc-google-trusted-stores-integration.php:363
-msgid "Armenian"
+msgid "Italian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:364
 #: includes/class-wc-google-trusted-stores-integration.php:364
-msgid "Interlingua"
+msgid "Hebrew"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:365
 #: includes/class-wc-google-trusted-stores-integration.php:365
-msgid "Interlingue"
+msgid "Japanese"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:366
 #: includes/class-wc-google-trusted-stores-integration.php:366
-msgid "Inupiak"
+msgid "Yiddish"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:367
 #: includes/class-wc-google-trusted-stores-integration.php:367
-msgid "Indonesian"
+msgid "Javanese"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:368
 #: includes/class-wc-google-trusted-stores-integration.php:368
-msgid "Icelandic"
+msgid "Georgian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:369
 #: includes/class-wc-google-trusted-stores-integration.php:369
-msgid "Italian"
+msgid "Kazakh"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:370
 #: includes/class-wc-google-trusted-stores-integration.php:370
-msgid "Hebrew"
+msgid "Greenlandic"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:371
 #: includes/class-wc-google-trusted-stores-integration.php:371
-msgid "Japanese"
+msgid "Cambodian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:372
 #: includes/class-wc-google-trusted-stores-integration.php:372
-msgid "Yiddish"
+msgid "Kannada"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:373
 #: includes/class-wc-google-trusted-stores-integration.php:373
-msgid "Javanese"
+msgid "Korean"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:374
 #: includes/class-wc-google-trusted-stores-integration.php:374
-msgid "Georgian"
+msgid "Kashmiri"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:375
 #: includes/class-wc-google-trusted-stores-integration.php:375
-msgid "Kazakh"
+msgid "Kurdish"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:376
 #: includes/class-wc-google-trusted-stores-integration.php:376
-msgid "Greenlandic"
+msgid "Kirghiz"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:377
 #: includes/class-wc-google-trusted-stores-integration.php:377
-msgid "Cambodian"
+msgid "Latin"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:378
 #: includes/class-wc-google-trusted-stores-integration.php:378
-msgid "Kannada"
+msgid "Lingala"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:379
 #: includes/class-wc-google-trusted-stores-integration.php:379
-msgid "Korean"
+msgid "Laothian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:380
 #: includes/class-wc-google-trusted-stores-integration.php:380
-msgid "Kashmiri"
+msgid "Lithuanian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:381
 #: includes/class-wc-google-trusted-stores-integration.php:381
-msgid "Kurdish"
+msgid "Latvian/Lettish"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:382
 #: includes/class-wc-google-trusted-stores-integration.php:382
-msgid "Kirghiz"
+msgid "Malagasy"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:383
 #: includes/class-wc-google-trusted-stores-integration.php:383
-msgid "Latin"
+msgid "Maori"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:384
 #: includes/class-wc-google-trusted-stores-integration.php:384
-msgid "Lingala"
+msgid "Macedonian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:385
 #: includes/class-wc-google-trusted-stores-integration.php:385
-msgid "Laothian"
+msgid "Malayalam"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:386
 #: includes/class-wc-google-trusted-stores-integration.php:386
-msgid "Lithuanian"
+msgid "Mongolian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:387
 #: includes/class-wc-google-trusted-stores-integration.php:387
-msgid "Latvian/Lettish"
+msgid "Moldavian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:388
 #: includes/class-wc-google-trusted-stores-integration.php:388
-msgid "Malagasy"
+msgid "Marathi"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:389
 #: includes/class-wc-google-trusted-stores-integration.php:389
-msgid "Maori"
+msgid "Malay"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:390
 #: includes/class-wc-google-trusted-stores-integration.php:390
-msgid "Macedonian"
+msgid "Maltese"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:391
 #: includes/class-wc-google-trusted-stores-integration.php:391
-msgid "Malayalam"
+msgid "Burmese"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:392
 #: includes/class-wc-google-trusted-stores-integration.php:392
-msgid "Mongolian"
+msgid "Nauru"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:393
 #: includes/class-wc-google-trusted-stores-integration.php:393
-msgid "Moldavian"
+msgid "Nepali"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:394
 #: includes/class-wc-google-trusted-stores-integration.php:394
-msgid "Marathi"
+msgid "Dutch"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:395
 #: includes/class-wc-google-trusted-stores-integration.php:395
-msgid "Malay"
+msgid "Norwegian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:396
 #: includes/class-wc-google-trusted-stores-integration.php:396
-msgid "Maltese"
+msgid "Occitan"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:397
 #: includes/class-wc-google-trusted-stores-integration.php:397
-msgid "Burmese"
+msgid "(Afan)/Oromoor/Oriya"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:398
 #: includes/class-wc-google-trusted-stores-integration.php:398
-msgid "Nauru"
+msgid "Punjabi"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:399
 #: includes/class-wc-google-trusted-stores-integration.php:399
-msgid "Nepali"
+msgid "Polish"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:400
 #: includes/class-wc-google-trusted-stores-integration.php:400
-msgid "Dutch"
+msgid "Pashto/Pushto"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:401
 #: includes/class-wc-google-trusted-stores-integration.php:401
-msgid "Norwegian"
+msgid "Portuguese"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:402
 #: includes/class-wc-google-trusted-stores-integration.php:402
-msgid "Occitan"
+msgid "Quechua"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:403
 #: includes/class-wc-google-trusted-stores-integration.php:403
-msgid "(Afan)/Oromoor/Oriya"
+msgid "Rhaeto-Romance"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:404
 #: includes/class-wc-google-trusted-stores-integration.php:404
-msgid "Punjabi"
+msgid "Kirundi"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:405
 #: includes/class-wc-google-trusted-stores-integration.php:405
-msgid "Polish"
+msgid "Romanian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:406
 #: includes/class-wc-google-trusted-stores-integration.php:406
-msgid "Pashto/Pushto"
+msgid "Russian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:407
 #: includes/class-wc-google-trusted-stores-integration.php:407
-msgid "Portuguese"
+msgid "Kinyarwanda"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:408
 #: includes/class-wc-google-trusted-stores-integration.php:408
-msgid "Quechua"
+msgid "Sanskrit"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:409
 #: includes/class-wc-google-trusted-stores-integration.php:409
-msgid "Rhaeto-Romance"
+msgid "Sindhi"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:410
 #: includes/class-wc-google-trusted-stores-integration.php:410
-msgid "Kirundi"
+msgid "Sangro"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:411
 #: includes/class-wc-google-trusted-stores-integration.php:411
-msgid "Romanian"
+msgid "Serbo-Croatian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:412
 #: includes/class-wc-google-trusted-stores-integration.php:412
-msgid "Russian"
+msgid "Singhalese"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:413
 #: includes/class-wc-google-trusted-stores-integration.php:413
-msgid "Kinyarwanda"
+msgid "Slovak"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:414
 #: includes/class-wc-google-trusted-stores-integration.php:414
-msgid "Sanskrit"
+msgid "Slovenian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:415
 #: includes/class-wc-google-trusted-stores-integration.php:415
-msgid "Sindhi"
+msgid "Samoan"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:416
 #: includes/class-wc-google-trusted-stores-integration.php:416
-msgid "Sangro"
+msgid "Shona"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:417
 #: includes/class-wc-google-trusted-stores-integration.php:417
-msgid "Serbo-Croatian"
+msgid "Somali"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:418
 #: includes/class-wc-google-trusted-stores-integration.php:418
-msgid "Singhalese"
+msgid "Albanian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:419
 #: includes/class-wc-google-trusted-stores-integration.php:419
-msgid "Slovak"
+msgid "Serbian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:420
 #: includes/class-wc-google-trusted-stores-integration.php:420
-msgid "Slovenian"
+msgid "Siswati"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:421
 #: includes/class-wc-google-trusted-stores-integration.php:421
-msgid "Samoan"
+msgid "Sesotho"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:422
 #: includes/class-wc-google-trusted-stores-integration.php:422
-msgid "Shona"
+msgid "Sundanese"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:423
 #: includes/class-wc-google-trusted-stores-integration.php:423
-msgid "Somali"
+msgid "Swedish"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:424
 #: includes/class-wc-google-trusted-stores-integration.php:424
-msgid "Albanian"
+msgid "Swahili"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:425
 #: includes/class-wc-google-trusted-stores-integration.php:425
-msgid "Serbian"
+msgid "Tamil"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:426
 #: includes/class-wc-google-trusted-stores-integration.php:426
-msgid "Siswati"
+msgid "Tegulu"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:427
 #: includes/class-wc-google-trusted-stores-integration.php:427
-msgid "Sesotho"
+msgid "Tajik"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:428
 #: includes/class-wc-google-trusted-stores-integration.php:428
-msgid "Sundanese"
+msgid "Thai"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:429
 #: includes/class-wc-google-trusted-stores-integration.php:429
-msgid "Swedish"
+msgid "Tigrinya"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:430
 #: includes/class-wc-google-trusted-stores-integration.php:430
-msgid "Swahili"
+msgid "Turkmen"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:431
 #: includes/class-wc-google-trusted-stores-integration.php:431
-msgid "Tamil"
+msgid "Tagalog"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:432
 #: includes/class-wc-google-trusted-stores-integration.php:432
-msgid "Tegulu"
+msgid "Setswana"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:433
 #: includes/class-wc-google-trusted-stores-integration.php:433
-msgid "Tajik"
+msgid "Tonga"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:434
 #: includes/class-wc-google-trusted-stores-integration.php:434
-msgid "Thai"
+msgid "Turkish"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:435
 #: includes/class-wc-google-trusted-stores-integration.php:435
-msgid "Tigrinya"
+msgid "Tsonga"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:436
 #: includes/class-wc-google-trusted-stores-integration.php:436
-msgid "Turkmen"
+msgid "Tatar"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:437
 #: includes/class-wc-google-trusted-stores-integration.php:437
-msgid "Tagalog"
+msgid "Twi"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:438
 #: includes/class-wc-google-trusted-stores-integration.php:438
-msgid "Setswana"
+msgid "Ukrainian"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:439
 #: includes/class-wc-google-trusted-stores-integration.php:439
-msgid "Tonga"
+msgid "Urdu"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:440
 #: includes/class-wc-google-trusted-stores-integration.php:440
-msgid "Turkish"
+msgid "Uzbek"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:441
 #: includes/class-wc-google-trusted-stores-integration.php:441
-msgid "Tsonga"
+msgid "Vietnamese"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:442
 #: includes/class-wc-google-trusted-stores-integration.php:442
-msgid "Tatar"
+msgid "Volapuk"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:443
 #: includes/class-wc-google-trusted-stores-integration.php:443
-msgid "Twi"
+msgid "Wolof"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:444
 #: includes/class-wc-google-trusted-stores-integration.php:444
-msgid "Ukrainian"
+msgid "Xhosa"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:445
 #: includes/class-wc-google-trusted-stores-integration.php:445
-msgid "Urdu"
+msgid "Yoruba"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:446
 #: includes/class-wc-google-trusted-stores-integration.php:446
-msgid "Uzbek"
+msgid "Chinese"
 msgstr ""
 
 #: build/includes/class-wc-google-trusted-stores-integration.php:447
 #: includes/class-wc-google-trusted-stores-integration.php:447
-msgid "Vietnamese"
-msgstr ""
-
-#: build/includes/class-wc-google-trusted-stores-integration.php:448
-#: includes/class-wc-google-trusted-stores-integration.php:448
-msgid "Volapuk"
-msgstr ""
-
-#: build/includes/class-wc-google-trusted-stores-integration.php:449
-#: includes/class-wc-google-trusted-stores-integration.php:449
-msgid "Wolof"
-msgstr ""
-
-#: build/includes/class-wc-google-trusted-stores-integration.php:450
-#: includes/class-wc-google-trusted-stores-integration.php:450
-msgid "Xhosa"
-msgstr ""
-
-#: build/includes/class-wc-google-trusted-stores-integration.php:451
-#: includes/class-wc-google-trusted-stores-integration.php:451
-msgid "Yoruba"
-msgstr ""
-
-#: build/includes/class-wc-google-trusted-stores-integration.php:452
-#: includes/class-wc-google-trusted-stores-integration.php:452
-msgid "Chinese"
-msgstr ""
-
-#: build/includes/class-wc-google-trusted-stores-integration.php:453
-#: includes/class-wc-google-trusted-stores-integration.php:453
 msgid "Zulu"
 msgstr ""
 
@@ -835,9 +848,9 @@ msgid "Integrates Google Trusted Stores with your WooCommerce store"
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "Enollo"
+msgid "enollo"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "http://www.enollo.com"
+msgid "https://enollo.com"
 msgstr ""

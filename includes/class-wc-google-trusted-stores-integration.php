@@ -1,10 +1,11 @@
 <?php
 
 /**
- * Google Analytics Integration
+ * Google Analytics Integration Class
  *
  * Allows tracking code to be inserted into store pages.
  *
+ * @since 1.0.0
  * @class       WC_Google_Trusted_Stores
  * @extends     WC_Integration
  */
@@ -15,6 +16,7 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 	 * Init and hook in the integration.
 	 */
 	public function __construct() {
+
 		$this->id                 = 'google_trusted_stores';
 		$this->method_title       = __( 'Google Trusted Stores', 'wc-google-trusted-stores' );
 		$this->method_description = __( 'Google Trusted Stores is a free service offered by Google that adds a badge to your online store allowing you to reach new customers and improve sales.', 'wc-google-trusted-stores' );
@@ -25,37 +27,37 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 		$this->init_form_fields();
 		$this->init_settings();
 
-		// Define user set variables
-		$this->gts_id                               = $this->get_option( 'gts_id' );
-		$this->gts_locale                           = $this->get_option( 'gts_locale' );
-		$this->gts_ship_time                        = $this->get_option( 'gts_ship_time' );
-		$this->gts_delivery_time                    = $this->get_option( 'gts_delivery_time' );
-		$this->gts_non_us                           = $this->get_option( 'gts_non_us' );
-		$this->gts_google_shopping_account_enable   = $this->get_option( 'gts_google_shopping_account_enable' );
-		$this->gts_google_shopping_account_id       = $this->get_option( 'gts_google_shopping_account_id' );
-		$this->gts_google_shopping_account_country  = $this->get_option( 'gts_google_shopping_account_country' );
-		$this->gts_google_shopping_account_language = $this->get_option( 'gts_google_shopping_account_language' );
+		foreach ( $this->form_fields as $key => $_ ) {
+			$this->$key = $this->get_option( $key );
+		}
 
-
-		// Actions
+		// Save the settings
 		add_action( 'woocommerce_update_options_integration_google_trusted_stores', array( $this, 'process_admin_options' ) );
 
-		// Google Trusted Stores Badge Code
-		add_action( 'wp_footer', array( $this, 'badge_code' ) );
+		// output the Google Trusted Stores badge code
+		add_action( 'wp_footer', array( $this, 'output_badge_code' ) );
 
-		// Order Confirmation Module Code
-		add_action( 'woocommerce_thankyou', array( $this, 'confirmation_code' ) );
+		// output the order confirmation module code
+		add_action( 'woocommerce_thankyou', array( $this, 'output_confirmation_code' ) );
 	}
 
 
 	/**
 	 * Initialise Settings Form Fields
+	 *
+	 * @since 1.0.0
 	 */
 	public function init_form_fields() {
 
-		$this->form_fields = array(
+		/**
+		 * Filter the settings array
+		 *
+		 * @since 1.0.0
+		 * @param array associative array of the integration's settings
+		 */
+		$this->form_fields = apply_filters( 'wc_google_trusted_stores_settings', array(
 
-			'title_general' => array (
+			'title_general' => array(
 				'title'       => __( 'General Options', 'wc-google-trusted-stores' ),
 				'type'        => 'title',
 				'description' => __( 'The following options are required to show the Google Trusted Stores Badge', 'wc-google-trusted-stores' ),
@@ -90,17 +92,10 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 				'default'     => '7',
 			),
 
-			'gts_non_us' => array(
-				'title'   => __( 'Non-US', 'wc-google-trusted-stores' ),
-				'label'   => __( 'Use the non-US Google Trusted Stores JavaScript', 'wc-google-trusted-stores' ),
-				'type'    => 'checkbox',
-				'default' => 'no',
-			),
-
-			'title_google_shopping' => array (
+			'title_google_shopping' => array(
 				'title'       => __( 'Google Shopping Options', 'wc-google-trusted-stores' ),
 				'type'        => 'title',
-				'description' => __( 'The following options are recommended if you submit product feeds for Google Shopping.<br>Provide these fields only if you submit feeds for Google Shopping.', 'wc-google-trusted-stores' ),
+				'description' => __( 'The following options are recommended if you submit product feeds for Google Shopping. <br>Provide these fields only if you submit feeds for Google Shopping.', 'wc-google-trusted-stores' ),
 			),
 
 			'gts_google_shopping_account_enable' => array(
@@ -139,54 +134,45 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 				'show_if_checked' => 'yes',
 			),
 
-			'gts_html' => array(
-				'type' => 'gts',
-			)
+			'title_advanced' => array(
+				'title'       => __( 'Advanced Options', 'wc-google-trusted-stores' ),
+				'type'        => 'title',
+				'description' => __( 'Use the following settings only if you having issues with validation.', 'wc-google-trusted-stores' ),
+				'id'          => 'wc_gts_advanced_options',
+			),
 
-		);
+			'gts_old_src' => array(
+				'title'   => __( 'Older JS source', 'wc-google-trusted-stores' ),
+				'label'   => __( "Use the older Google Trusted Stores JavaScript. If you're unable to pass Google Trusted Stores validation, try enabling this setting as your account may still be using the older source code.", 'wc-google-trusted-stores' ),
+				'type'    => 'checkbox',
+				'default' => 'no',
+			),
 
-	} // End init_form_fields()
-
-
-	public function generate_gts_html() {
-		ob_start();
-		?>
-		<script type="text/javascript">
-			jQuery( window ).load( function() {
-				jQuery( '#woocommerce_google_trusted_stores_gts_google_shopping_account_enable' ).change( function(){
-					if ( jQuery( this ).is( ':checked' ) ) {
-						jQuery( '#woocommerce_google_trusted_stores_gts_google_shopping_account_id' ).closest( 'tr' ).show();
-						jQuery( '#woocommerce_google_trusted_stores_gts_google_shopping_account_country' ).closest( 'tr' ).show();
-						jQuery( '#woocommerce_google_trusted_stores_gts_google_shopping_account_language' ).closest( 'tr' ).show();
-					} else {
-						jQuery( '#woocommerce_google_trusted_stores_gts_google_shopping_account_id' ).closest( 'tr' ).hide();
-						jQuery( '#woocommerce_google_trusted_stores_gts_google_shopping_account_country' ).closest( 'tr' ).hide();
-						jQuery( '#woocommerce_google_trusted_stores_gts_google_shopping_account_language' ).closest( 'tr' ).hide();
-					}
-				}).change();
-			});
-		</script>
-		<?php
-		return ob_get_clean();
+		) );
 	}
 
 
 	/**
 	 * Google Trusted Stores badge code
+	 *
+	 * @since 1.0.0
 	 */
-	public function badge_code() {
+	public function output_badge_code() {
 
 		if ( ! $this->gts_id ) {
 			return;
 		}
 
-		$code = 'var gts = gts || [];
-					gts.push(["id", "' . esc_js( $this->gts_id ) . '"]);
-					gts.push(["locale", "' . esc_js( $this->gts_locale ) . '"]);';
+		$code = '
+				var gts = gts || [];
+				gts.push(["id", "' . esc_js( $this->gts_id ) . '"]);
+				gts.push(["locale", "' . esc_js( $this->gts_locale ) . '"]);
+		';
 
 		if ( is_product() ) {
 
 			global $product;
+
 			$code .= 'gts.push(["google_base_offer_id", "' . esc_js( $product->id ) . '"]);';
 		}
 
@@ -199,7 +185,11 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 			';
 		}
 
-		$src = 'yes' === $this->gts_non_us ? 'www.googlecommerce.com/trustedstores/api/js' : 'www.googlecommerce.com/trustedstores/gtmp_compiled.js';
+		$src = 'www.googlecommerce.com/trustedstores/api/js';
+
+		if ( 'yes' === $this->gts_old_src ) {
+			$src = 'www.googlecommerce.com/trustedstores/gtmp_compiled.js';
+		}
 
 		$code .= '
 				(function() {
@@ -220,9 +210,10 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 	/**
 	 * Google Trusted Stores confirmation code
 	 *
+	 * @since 1.0.0
 	 * @param mixed $order_id
 	 */
-	public function confirmation_code( $order_id ) {
+	public function output_confirmation_code( $order_id ) {
 
 		if ( 1 === get_post_meta( $order_id, '_wc_gts_tracked', true ) ) {
 			return;
@@ -309,12 +300,19 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 
 
 	/**
-	 * Get languages array
+	 * Helper method which returns the languages supported by Google Trusted Stores
 	 *
+	 * @since 1.0.0
 	 * @return array associative array of languages
 	 */
 	public function get_languages() {
 
+		/**
+		 * Filter the languages array
+		 *
+		 * @since 1.0.0
+		 * @param array associative array of languages
+		 */
 		return apply_filters( 'wc_google_trusted_stores_languages', array(
 			'en' => __( 'English', 'wc-google-trusted-stores' ),
 			'aa' => __( 'Afar', 'wc-google-trusted-stores' ),
