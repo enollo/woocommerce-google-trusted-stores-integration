@@ -10,6 +10,22 @@
  */
 
 /**
+ * Generate a direct link to settings page within WooCommerce
+ *
+ * @since 1.0.1
+ */
+function wc_google_trusted_stores_action_links( $links, $file ) {
+	if ( 'woocommerce-google-trusted-stores-integration/woocommerce-google-trusted-stores-integration.php' == $file ) {
+		$settings_link = '<a href="' .  admin_url( 'admin.php?page=wc-settings&tab=google_trusted_stores' ) . '">' . __( 'Settings' ) . '</a>';
+		// make the 'Settings' link appear first
+		array_unshift( $links, $settings_link );
+	}
+	return $links;
+}
+add_filter( 'plugin_action_links', 'wc_google_trusted_stores_action_links', 10, 2 );
+
+
+/**
  * Register the integration with WooCommerce
  *
  * @since 1.0.0
