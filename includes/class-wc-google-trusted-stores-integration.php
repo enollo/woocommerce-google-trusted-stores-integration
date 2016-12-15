@@ -173,7 +173,7 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 
 			global $product;
 
-			$code .= 'gts.push(["google_base_offer_id", "' . esc_js( $product->id ) . '"]);';
+			$code .= 'gts.push(["google_base_offer_id", "' . esc_js( apply_filters( 'google_base_offer_id', $product->id ) ) . '"]);';
 		}
 
 		if ( $this->gts_google_shopping_account_enable === 'yes' && $this->gts_google_shopping_account_id !== '' ) {
