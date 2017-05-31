@@ -4,7 +4,7 @@
  * Description: Integrates Google Trusted Stores with your WooCommerce store
  * Author: enollo
  * Author URI: https://enollo.com
- * Version: 1.0.0
+ * Version: 1.1.0
  * Text Domain: wc-google-trusted-stores
  * Domain Path: /i18n/languages/
  */
