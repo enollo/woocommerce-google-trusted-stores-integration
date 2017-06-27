@@ -258,8 +258,8 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 			<!-- start order and merchant information -->
 			<span id="gts-o-id">' . esc_html( $order->get_order_number() ) . '</span>
 			<span id="gts-o-domain">' . str_replace( array( 'http://', 'https://' ), '', home_url() ) . '</span>
-			<span id="gts-o-email">' . esc_html( self::wc_get_prop($order,billing_email) ) . '</span>
-			<span id="gts-o-country">' . esc_html( self::wc_get_prop($order,shipping_country) ) . '</span>
+			<span id="gts-o-email">' . esc_html( self::wc_get_prop($order,'billing_email') ) . '</span>
+			<span id="gts-o-country">' . esc_html( self::wc_get_prop($order,'shipping_country') ) . '</span>
 			<span id="gts-o-currency">' . esc_html(self::is_wc3()?$order->get_currency() : $order->get_order_currency() ) . '</span>
 			<span id="gts-o-total">' . esc_html( $order->get_total() ) . '</span>
 			<span id="gts-o-discounts">' . esc_html( $order->get_total_discount() ) . '</span>
