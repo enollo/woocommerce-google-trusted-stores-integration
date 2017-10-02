@@ -229,7 +229,7 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 		// Get order items
 		$items = $order->get_items();
 
-		$ship_date = date( 'Y-m-d', strtotime( $this->gts_ship_time . ' weekdays', strtotime( $order->order_date ) ) );
+		$ship_date = date( 'Y-m-d', strtotime( $this->gts_ship_time . ' weekdays', strtotime( self::is_wc3()?$order->get_date_created(): $order->order_date ) ) );
 		$ship_date = apply_filters( 'wc_google_trusted_stores_order_ship_date', $ship_date, $order_id );
 
 		$delivery_date = date( 'Y-m-d', strtotime( $this->gts_delivery_time . ' weekdays', strtotime( $ship_date ) ) );
