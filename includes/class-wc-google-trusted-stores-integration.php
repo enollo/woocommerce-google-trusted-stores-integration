@@ -173,7 +173,7 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 
 			global $product;
 
-			$code .= 'gts.push(["google_base_offer_id", "' . esc_js( $product->id ) . '"]);';
+			$code .= 'gts.push(["google_base_offer_id", "' . esc_js( self::wc_get_id($product) ) . '"]);';
 		}
 
 		if ( $this->gts_google_shopping_account_enable === 'yes' && $this->gts_google_shopping_account_id !== '' ) {
@@ -229,7 +229,7 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 		// Get order items
 		$items = $order->get_items();
 
-		$ship_date = date( 'Y-m-d', strtotime( $this->gts_ship_time . ' weekdays', strtotime( $order->order_date ) ) );
+		$ship_date = date( 'Y-m-d', strtotime( $this->gts_ship_time . ' weekdays', strtotime( self::is_wc3()?$order->get_date_created(): $order->order_date ) ) );
 		$ship_date = apply_filters( 'wc_google_trusted_stores_order_ship_date', $ship_date, $order_id );
 
 		$delivery_date = date( 'Y-m-d', strtotime( $this->gts_delivery_time . ' weekdays', strtotime( $ship_date ) ) );
@@ -239,7 +239,13 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 
 		foreach ( $items as $item ) {
 
-			$product = $order->get_product_from_item( $item );
+		    if(self::is_wc3()){
+		        $product = $item->get_product();
+            }else{
+                $product = $order->get_product_from_item( $item );
+            }
+
+
 
 			if ( $product && $product->exists() && $product->is_on_backorder() ) {
 				$has_backorder = true;
@@ -252,12 +258,12 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 			<!-- start order and merchant information -->
 			<span id="gts-o-id">' . esc_html( $order->get_order_number() ) . '</span>
 			<span id="gts-o-domain">' . str_replace( array( 'http://', 'https://' ), '', home_url() ) . '</span>
-			<span id="gts-o-email">' . esc_html( $order->billing_email ) . '</span>
-			<span id="gts-o-country">' . esc_html( $order->shipping_country ) . '</span>
-			<span id="gts-o-currency">' . esc_html( $order->get_order_currency() ) . '</span>
+			<span id="gts-o-email">' . esc_html( self::wc_get_prop($order,'billing_email') ) . '</span>
+			<span id="gts-o-country">' . esc_html( self::wc_get_prop($order,'shipping_country') ) . '</span>
+			<span id="gts-o-currency">' . esc_html(self::is_wc3()?$order->get_currency() : $order->get_order_currency() ) . '</span>
 			<span id="gts-o-total">' . esc_html( $order->get_total() ) . '</span>
 			<span id="gts-o-discounts">' . esc_html( $order->get_total_discount() ) . '</span>
-			<span id="gts-o-shipping-total">' . esc_html( $order->get_total_shipping() ) . '</span>
+			<span id="gts-o-shipping-total">' . esc_html(self::is_wc3()?$order->get_shipping_total(): $order->get_total_shipping() ) . '</span>
 			<span id="gts-o-tax-total">' . esc_html( $order->get_total_tax() ) . '</span>
 			<span id="gts-o-est-ship-date">' . esc_html( $ship_date ) . '</span>
 			<span id="gts-o-est-delivery-date">' . esc_html( $delivery_date ) . '</span>
@@ -451,6 +457,24 @@ class WC_Google_Trusted_Stores extends WC_Integration {
 			'zu' => __( 'Zulu', 'wc-google-trusted-stores' ),
 		) );
 	}
+
+    private static function wc_get_prop($object, $prop){
+        if(self::is_wc3() && get_class($object) !='WP_Post' ){
+            return $object->{'get_'.$prop}();
+        }else{
+            return $object->{$prop};
+        }
+    }
+
+
+
+    private static function wc_get_id($object){
+        return self::wc_get_prop($object, 'id');
+    }
+    public static function is_wc3(){
+        return  version_compare( WC()->version, '3.0.0', '>=' ) ;
+    }
+
 
 
 }
